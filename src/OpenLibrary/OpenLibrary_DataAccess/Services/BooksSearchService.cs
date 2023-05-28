@@ -16,7 +16,7 @@ public class BooksSearchService
     {
         string author = PrepareStringParameterForUrl(input);
 
-        var url = $"{OPEN_LIBRARY_BASE_URL}{OPEN_LIBRARY_AUTHOR_SEARCH}{author}";
+        var url = $"{OPEN_LIBRARY_AUTHOR_SEARCH}{author}";
 
         await GetBooksAsync(url);
 
@@ -27,7 +27,7 @@ public class BooksSearchService
     {
         string title = PrepareStringParameterForUrl(input);
 
-        var url = $"{OPEN_LIBRARY_BASE_URL}{OPEN_LIBRARY_TITLE_SEARCH}{title}";
+        var url = $"{OPEN_LIBRARY_TITLE_SEARCH}{title}";
 
         await GetBooksAsync(url);
 
@@ -38,7 +38,7 @@ public class BooksSearchService
     {
         string parameter = PrepareStringParameterForUrl(input);
         
-        var url = $"{OPEN_LIBRARY_BASE_URL}{OPEN_LIBRARY_FULL_SEARCH}{parameter}";
+        var url = $"{OPEN_LIBRARY_FULL_SEARCH}{parameter}";
 
         await GetBooksAsync(url);
 
