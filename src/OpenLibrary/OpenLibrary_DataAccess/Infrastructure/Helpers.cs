@@ -9,6 +9,11 @@ public static class Helpers
 
     public static string JoinStringArrByPlus(string[] input)
     {
-        return string.Join("+", input);
+        if (input.Length > 1)
+        {
+            return string.Join('+', input);
+        }
+
+        return input[0];
     }
 }
