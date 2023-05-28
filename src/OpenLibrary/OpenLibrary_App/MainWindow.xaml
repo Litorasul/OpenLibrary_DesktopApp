@@ -9,6 +9,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75" />
+            <RowDefinition Height="45"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -17,8 +18,16 @@
         </Grid.ColumnDefinitions>
         <TextBox Name="searchBar" Height="35" Margin="10, 5" FontSize="16"/>
         <Button Grid.Column="1" Name="searchButton" Width="75" Height="50" Content="Search" Click="searchButton_Click"/>
-        
-        <ListView Name="searchResults" Grid.Row="1" Grid.ColumnSpan="2"/>
+
+        <Viewbox Grid.Row="1">
+            <DockPanel  VerticalAlignment="Center" >
+                <Label FontWeight="DemiBold">Search By</Label>
+                <CheckBox Name="checkAuthor" Margin="5, 5">Author</CheckBox>
+                <CheckBox Name="checkTitle" Margin="5, 5">Title</CheckBox>
+            </DockPanel>
+        </Viewbox>
+
+        <ListView Name="searchResults" Grid.Row="2" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>
