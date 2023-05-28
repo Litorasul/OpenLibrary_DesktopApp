@@ -22,14 +22,17 @@ public partial class MainWindow : Window
 {
     private ListOfBooks? searchResult;
     private BooksSearchService booksSearchService;
+    private BookDetailsService bookDetailsService;
 
     public MainWindow()
     {
         InitializeComponent();
         ApiClientHandler.InitializeClient();
         booksSearchService = new BooksSearchService();
+        bookDetailsService = new BookDetailsService();
     }
 
+    // Void ?????
     private async void searchButton_Click(object sender, RoutedEventArgs e)
     {
         SearchType type = CheckSearchType();
@@ -50,11 +53,14 @@ public partial class MainWindow : Window
         ShowSearchResults();
     }
 
-    private void searchResults_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    // Void ?????
+    private async void searchResults_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
         var item = ItemsControl.ContainerFromElement(sender as ListBox, e.OriginalSource as DependencyObject) as ListBoxItem;
         var content = (ListBoxItem)item.Content;
         var selectedBook = (BookInList)content.Tag;
+
+        var details = await bookDetailsService.GetBookDetailsAsync(selectedBook);
     }
 
     private SearchType CheckSearchType()
@@ -101,8 +107,12 @@ public partial class MainWindow : Window
         {
             foreach (var item in searchResult.Docs)
             {
-                string result = $"{item.Title} by {string.Join(", ", item.Author_Name)}";
-                searchResults.Items.Add(new ListBoxItem() { Content = result, Tag = item });
+                if (item.Author_Name != null)
+                {
+                    string result = $"{item.Title} by {string.Join(", ", item.Author_Name)}";
+                    searchResults.Items.Add(new ListBoxItem() { Content = result, Tag = item });
+                }
+
             }
         }
     }
