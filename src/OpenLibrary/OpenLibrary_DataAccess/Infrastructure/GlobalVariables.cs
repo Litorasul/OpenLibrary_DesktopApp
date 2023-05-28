@@ -2,6 +2,8 @@
 
 public static class GlobalVariables
 {
+    public const string JSON_CONTENT_TYPE = "application/json";
+
     #region Open Library URL parts
 
     public const string OPEN_LIBRARY_BASE_URL = "https://openlibrary.org/search.json?";

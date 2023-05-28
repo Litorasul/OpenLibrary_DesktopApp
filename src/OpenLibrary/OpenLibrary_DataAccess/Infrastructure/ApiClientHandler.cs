@@ -12,6 +12,6 @@ public static class ApiClientHandler
         ApiClient = new HttpClient();
         ApiClient.BaseAddress = new Uri(OPEN_LIBRARY_BASE_URL);
         ApiClient.DefaultRequestHeaders.Accept.Clear();
-        ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(JSON_CONTENT_TYPE));
     }
 }
