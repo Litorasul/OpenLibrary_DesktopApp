@@ -1,7 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
-
+using System.Windows.Controls;
 using OpenLibrary_DataAccess.Infrastructure;
 using OpenLibrary_DataAccess.Models;
 using OpenLibrary_DataAccess.Services;
@@ -35,7 +34,7 @@ public partial class MainWindow : Window
     {
         SearchType type = CheckSearchType();
 
-        switch(type)
+        switch (type)
         {
             case SearchType.Author:
                 await SearchAuthor(searchBar.Text);
@@ -49,6 +48,13 @@ public partial class MainWindow : Window
         }
 
         ShowSearchResults();
+    }
+
+    private void searchResults_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        var item = ItemsControl.ContainerFromElement(sender as ListBox, e.OriginalSource as DependencyObject) as ListBoxItem;
+        var content = (ListBoxItem)item.Content;
+        var selectedBook = (BookInList)content.Tag;
     }
 
     private SearchType CheckSearchType()
@@ -96,8 +102,9 @@ public partial class MainWindow : Window
             foreach (var item in searchResult.Docs)
             {
                 string result = $"{item.Title} by {string.Join(", ", item.Author_Name)}";
-                searchResults.Items.Add(result);
+                searchResults.Items.Add(new ListBoxItem() { Content = result, Tag = item });
             }
         }
     }
+
 }

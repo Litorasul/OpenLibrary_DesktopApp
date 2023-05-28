@@ -27,7 +27,7 @@
             </DockPanel>
         </Viewbox>
 
-        <ListView Name="searchResults" Grid.Row="2" Grid.ColumnSpan="2"/>
+        <ListView Name="searchResults" Grid.Row="2" Grid.ColumnSpan="2" PreviewMouseDown="searchResults_PreviewMouseDown"/>
 
     </Grid>
 </Window>
