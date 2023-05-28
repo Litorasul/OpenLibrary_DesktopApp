@@ -1,16 +1,16 @@
 ﻿using OpenLibrary_DataAccess.Infrastructure;
 using OpenLibrary_DataAccess.Models;
-namespace OpenLibrary_DataAccess.Services;
 
 using Newtonsoft.Json;
 
 using static OpenLibrary_DataAccess.Infrastructure.GlobalVariables;
 using static OpenLibrary_DataAccess.Infrastructure.Helpers;
 
+namespace OpenLibrary_DataAccess.Services;
 
 public class BooksSearchService
 {
-    private ListOfBooks? books = null;
+    private ListOfBooks? books;
 
     public async Task<ListOfBooks> GetBooksByAuthorAsync(string input)
     {
@@ -21,7 +21,7 @@ public class BooksSearchService
         await GetBooksAsync(url);
 
         return books;
-    }
+    } 
 
     public async Task<ListOfBooks> GetBooksByTitleAsync(string input)
     {
