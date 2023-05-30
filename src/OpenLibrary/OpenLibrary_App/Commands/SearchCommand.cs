@@ -2,7 +2,10 @@
 using OpenLibrary_App.ViewModels;
 using OpenLibrary_DataAccess.Models;
 using OpenLibrary_DataAccess.Services;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace OpenLibrary_App.Commands;
@@ -11,14 +14,14 @@ public class SearchCommand : CommandBase
 {
     private SearchResultsViewModel searchResultsViewModel;
     private SearchType searchType => CheckSearchType();
-    private List<BookInListModel> booksInList;
+    private ObservableCollection<BookInListViewModel> booksInList;
     private BooksSearchService booksSearchService;
 
-    public SearchCommand(SearchResultsViewModel searchResultsViewModel)
+    public SearchCommand(SearchResultsViewModel searchResultsViewModel, ObservableCollection<BookInListViewModel> books)
     {
         this.searchResultsViewModel = searchResultsViewModel;
         booksSearchService = new BooksSearchService();
-        booksInList = new List<BookInListModel>();
+        this.booksInList = books;
     }
 
     public async override void Execute(object? parameter)
@@ -49,7 +52,8 @@ public class SearchCommand : CommandBase
                 Title = book.Title,
                 Authors = book.Author_Name
             };
-            booksInList.Add(b);
+            var c = new BookInListViewModel(b);
+            booksInList.Add(c);
         }
     }
 
@@ -66,6 +70,7 @@ public class SearchCommand : CommandBase
 
         return SearchType.Full;
     }
+
 }
 
 public enum SearchType

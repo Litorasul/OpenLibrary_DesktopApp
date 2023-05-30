@@ -52,12 +52,12 @@ public class SearchResultsViewModel : ViewModelBase
 
     public ICommand SearchCommand { get; }
 
-    private readonly ObservableCollection<BookInListViewModel> bookInList;
+    private  ObservableCollection<BookInListViewModel> bookInList;
     public IEnumerable<BookInListViewModel> BookInList => bookInList;
 
     public SearchResultsViewModel()
     {
         bookInList = new ObservableCollection<BookInListViewModel>();
-        SearchCommand = new SearchCommand(this);
+        SearchCommand = new SearchCommand(this, bookInList);
     }
 }

@@ -17,5 +17,9 @@
             <Setter Property="Foreground" Value="#2c5530"/>
             <Setter Property="BorderBrush" Value="#d38b5d"/>
         </Style>
+
+        <Style TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Visibility" Value="Collapsed" />
+        </Style>
     </Application.Resources>
 </Application>
