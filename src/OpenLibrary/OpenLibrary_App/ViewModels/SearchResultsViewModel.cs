@@ -51,13 +51,15 @@ public class SearchResultsViewModel : ViewModelBase
     }
 
     public ICommand SearchCommand { get; }
+    public ICommand ChooseItemCommand { get; }
 
-    private  ObservableCollection<BookInListViewModel> bookInList;
+    private ObservableCollection<BookInListViewModel> bookInList;
     public IEnumerable<BookInListViewModel> BookInList => bookInList;
 
     public SearchResultsViewModel()
     {
         bookInList = new ObservableCollection<BookInListViewModel>();
         SearchCommand = new SearchCommand(this, bookInList);
+        ChooseItemCommand = new ChooseItemCommand();
     }
 }
