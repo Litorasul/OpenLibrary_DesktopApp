@@ -2,10 +2,8 @@
 using OpenLibrary_App.ViewModels;
 using OpenLibrary_DataAccess.Models;
 using OpenLibrary_DataAccess.Services;
-using System;
-using System.Collections.Generic;
+
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace OpenLibrary_App.Commands;
@@ -50,7 +48,8 @@ public class SearchCommand : CommandBase
             {
                 Key = book.Key,
                 Title = book.Title,
-                Authors = book.Author_Name
+                Authors = book.Author_Name,
+                Isbn = book.Isbn
             };
             var c = new BookInListViewModel(b);
             booksInList.Add(c);
